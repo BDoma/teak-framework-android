@@ -4,14 +4,11 @@ import android.view.View
 
 class ClickListener<Msg>(
     private val msg: Msg,
-    private val function : (() -> Unit)? = null
-) : Action<Msg>(), View.OnClickListener {
+    function : (() -> Unit)? = null
+) : Action<Msg>(function), View.OnClickListener {
 
     override fun onClick(p0: View?) {
-        function?.invoke()
-        for (dispatch in dispatchers) {
-            dispatch(msg)
-        }
+        dispatch(msg)
     }
 
 }

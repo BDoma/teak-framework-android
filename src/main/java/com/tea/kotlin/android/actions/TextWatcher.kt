@@ -8,9 +8,7 @@ class TextWatcher<Msg>(private val transform: (String) -> Msg) : Action<Msg>(), 
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        for (dispatch in dispatchers) {
-            dispatch(transform(s.toString()))
-        }
+        dispatch(transform(s.toString()))
     }
 
     override fun afterTextChanged(s: Editable?) {

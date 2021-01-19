@@ -1,9 +1,16 @@
 package com.tea.kotlin.android.actions
 
-abstract class Action<Msg> {
-    protected val dispatchers = arrayListOf<(Msg) -> Unit>()
+abstract class Action<Msg>(private val event: (() -> Unit)? = null) {
+    private val dispatchers = arrayListOf<(Msg) -> Unit>()
 
-    fun addDispatcher(dispatcher: (Msg) -> Unit){
+    protected fun dispatch(message: Msg) {
+        event?.invoke()
+        for (dispatch in dispatchers) {
+            dispatch(message)
+        }
+    }
+
+    fun addDispatcher(dispatcher: (Msg) -> Unit) {
         if (!dispatchers.contains(dispatcher)) dispatchers.add(dispatcher)
     }
 }
