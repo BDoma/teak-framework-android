@@ -1,17 +1,22 @@
 package com.tea.kotlin.android
 
+import android.graphics.ColorSpace
 import android.os.Bundle
+import android.provider.SyncStateContract.Helpers.update
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.tea.kotlin.Runtime
+import com.tea.kotlin.android.actions.Action
 import com.tea.kotlin.android.adapters.OptionsMenuItemAdapter
 import com.tea.kotlin.android.adapters.ViewAdapter
 
 
 abstract class Activity<Model, Msg> : AppCompatActivity() {
     private lateinit var runtime: Runtime<Model, Msg>
+
+    private val actions = arrayListOf<Action<out Msg>>()
 
     private val viewAdapters = arrayListOf<Pair<Int, ViewAdapter<out View>>>()
     private var viewCreated = false
@@ -21,13 +26,20 @@ abstract class Activity<Model, Msg> : AppCompatActivity() {
 
     final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        runtime = createRuntime()
+        runtime = Runtime(::init, view = ::myView, ::update)
         setContentView(getLayout())
         for (adapter in viewAdapters) {
             adapter.second.onCreated(findViewById(adapter.first))
         }
         viewCreated = true
         onViewCreated()
+    }
+
+    private fun myView(model: Model, dispatch: (Msg) -> Unit){
+        for (action in actions) {
+            action.addDispatcher(dispatcher = dispatch)
+        }
+        view(model, dispatch)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -58,11 +70,16 @@ abstract class Activity<Model, Msg> : AppCompatActivity() {
         runtime.stop()
         super.onDestroy()
     }
-
+    abstract fun init(): Pair<Model, List<() -> Msg>>
+    abstract fun update(model: Model, message: Msg): Pair<Model, List<() -> Msg>>
+    abstract fun view(model: Model, dispatch: (Msg) -> Unit)
     abstract fun getLayout(): Int
     open fun getOptionsMenu(): Int? = null
-    abstract fun createRuntime(): Runtime<Model, Msg>
     open fun onViewCreated() {}
+
+    fun <T : Msg>registerAction(action: Action<T>) {
+        actions.add(action)
+    }
 
     fun <T : View> registerViewAdapter(resId: Int, viewAdapter: ViewAdapter<T>) {
         viewAdapters.add(Pair(resId, viewAdapter))

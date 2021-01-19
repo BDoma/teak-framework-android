@@ -1,7 +1,15 @@
 package com.tea.kotlin.android.actions
 
-abstract class Action<Msg>(private val event: (() -> Unit)? = null) {
+import com.tea.kotlin.android.Activity
+
+abstract class Action<Msg>(
+    activity: Activity<out Any, Msg>,
+    private val event: (() -> Unit)? = null) {
     private val dispatchers = arrayListOf<(Msg) -> Unit>()
+
+    init {
+        activity.registerAction(this)
+    }
 
     protected fun dispatch(message: Msg) {
         event?.invoke()
@@ -10,7 +18,7 @@ abstract class Action<Msg>(private val event: (() -> Unit)? = null) {
         }
     }
 
-    fun addDispatcher(dispatcher: (Msg) -> Unit) {
+    internal fun addDispatcher(dispatcher: (Msg) -> Unit) {
         if (!dispatchers.contains(dispatcher)) dispatchers.add(dispatcher)
     }
 }
