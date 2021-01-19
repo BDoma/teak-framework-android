@@ -1,15 +1,16 @@
-package com.tea.kotlin.android.adapters
+package com.tea.kotlin.android.adapters.menu
 
 import android.view.MenuItem
-import com.tea.kotlin.android.Activity
+import com.tea.kotlin.android.adapters.BaseAdapter
+import com.tea.kotlin.android.common.Lifecycle
 
-class OptionsMenuItemAdapter(
-    activity: Activity<out Any, out Any>,
+class MenuItemAdapter(
+    lifecycleOwner: Lifecycle<out Any>,
     resId: Int,
     private var onItemClickListener: android.view.View.OnClickListener? = null
 ) : BaseAdapter<MenuItem>() {
     init {
-        activity.registerMenuItemAdapter(resId, this)
+        lifecycleOwner.registerMenuItemAdapter(resId, this)
     }
 
     internal fun onClick(){

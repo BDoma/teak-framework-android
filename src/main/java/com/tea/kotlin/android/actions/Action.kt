@@ -1,14 +1,14 @@
 package com.tea.kotlin.android.actions
 
-import com.tea.kotlin.android.Activity
+import com.tea.kotlin.android.common.ActionLifecycle
 
 abstract class Action<Msg>(
-    activity: Activity<out Any, Msg>,
+    lifecycle: ActionLifecycle<Msg>,
     private val event: (() -> Unit)? = null) {
     private val dispatchers = arrayListOf<(Msg) -> Unit>()
 
     init {
-        activity.registerAction(this)
+        lifecycle.registerAction(this)
     }
 
     protected fun dispatch(message: Msg) {

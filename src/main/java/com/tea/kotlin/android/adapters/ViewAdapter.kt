@@ -1,14 +1,14 @@
 package com.tea.kotlin.android.adapters
 
 import android.view.View
-import com.tea.kotlin.android.Activity
+import com.tea.kotlin.android.common.Lifecycle
 
 class ViewAdapter<T : View>(
-    activity: Activity<out Any, out Any>,
+    container: Lifecycle<out Any>,
     resId: Int,
     init: ((T) -> Unit)? = null
 )  : BaseAdapter<T>(init) {
     init {
-        activity.registerViewAdapter(resId, this)
+        container.registerViewAdapter(resId, this)
     }
 }
