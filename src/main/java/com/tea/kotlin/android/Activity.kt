@@ -8,7 +8,7 @@ import com.tea.kotlin.Runtime
 import com.tea.kotlin.android.common.Lifecycle
 
 
-abstract class Activity<Model, Msg> : AppCompatActivity() {
+abstract class Activity<Model : Any, Msg> : AppCompatActivity() {
     private lateinit var runtime: Runtime<Model, Msg>
     val lifecycleOwner = Lifecycle<Msg>()
 
