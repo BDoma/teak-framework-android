@@ -2,7 +2,7 @@ package com.tea.kotlin.android.actions
 
 import com.tea.kotlin.android.common.ActionLifecycle
 
-abstract class Action<Msg>(
+open class Action<Msg>(
     lifecycle: ActionLifecycle<Msg>,
     private val event: (() -> Unit)? = null) {
     private val dispatchers = arrayListOf<(Msg) -> Unit>()
@@ -11,7 +11,7 @@ abstract class Action<Msg>(
         lifecycle.registerAction(this)
     }
 
-    protected fun dispatch(message: Msg) {
+    fun dispatch(message: Msg) {
         event?.invoke()
         for (dispatch in dispatchers) {
             dispatch(message)
