@@ -1,4 +1,4 @@
-package com.tea.kotlin.android.common
+package com.tea.kotlin.android.lifecycles
 
 import android.view.Menu
 import android.view.MenuItem
@@ -13,7 +13,7 @@ class Lifecycle<Msg> : ActionLifecycle<Msg>() {
     private val menuItemAdapters = arrayListOf<Pair<Int, MenuItemAdapter>>()
     private var optionsMenu: Menu? = null
 
-    internal fun onViewCreated(view: View) {
+    fun onViewCreated(view: View) {
         for (adapter in viewAdapters) {
             adapter.second.onCreated(view.findViewById(adapter.first))
         }

@@ -2,7 +2,7 @@ package com.tea.kotlin.android.actions
 
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
-import com.tea.kotlin.android.common.ActionLifecycle
+import com.tea.kotlin.android.lifecycles.ActionLifecycle
 
 class MenuItemClickListener<Msg>(
     lifecycle: ActionLifecycle<Msg>,

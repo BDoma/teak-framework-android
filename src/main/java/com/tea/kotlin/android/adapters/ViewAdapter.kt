@@ -1,7 +1,7 @@
 package com.tea.kotlin.android.adapters
 
 import android.view.View
-import com.tea.kotlin.android.common.Lifecycle
+import com.tea.kotlin.android.lifecycles.Lifecycle
 
 class ViewAdapter<T : View>(
     container: Lifecycle<out Any>,

@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import com.tea.kotlin.Runtime
-import com.tea.kotlin.android.common.Lifecycle
+import com.tea.kotlin.android.lifecycles.Lifecycle
 
 
 abstract class Fragment<Model : Any, Msg> : Fragment() {
     private lateinit var runtime: Runtime<Model, Msg>
     val lifecycleOwner = Lifecycle<Msg>()
 
-    final override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         getOptionsMenu()?.let { setHasOptionsMenu(true) }
         super.onCreate(savedInstanceState)
         runtime = Runtime(::init, view = ::myView, ::update)

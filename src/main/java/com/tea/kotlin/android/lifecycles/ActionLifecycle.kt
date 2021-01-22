@@ -1,4 +1,4 @@
-package com.tea.kotlin.android.common
+package com.tea.kotlin.android.lifecycles
 
 import com.tea.kotlin.android.actions.Action
 
@@ -6,7 +6,7 @@ open class ActionLifecycle<Msg> {
     private var dispatch: ((Msg) -> Unit)? = null
     private val actions = arrayListOf<Action<out Msg>>()
 
-    internal fun addDispatch(dispatch: (Msg) -> Unit) {
+    fun addDispatch(dispatch: (Msg) -> Unit) {
         this.dispatch = dispatch
         for (action in actions) {
             action.addDispatcher(dispatcher = dispatch)

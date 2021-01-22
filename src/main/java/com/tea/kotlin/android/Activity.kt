@@ -5,7 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.tea.kotlin.Runtime
-import com.tea.kotlin.android.common.Lifecycle
+import com.tea.kotlin.android.lifecycles.Lifecycle
 
 
 abstract class Activity<Model : Any, Msg> : AppCompatActivity() {

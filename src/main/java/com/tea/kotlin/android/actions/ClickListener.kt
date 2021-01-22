@@ -1,7 +1,7 @@
 package com.tea.kotlin.android.actions
 
 import android.view.View
-import com.tea.kotlin.android.common.ActionLifecycle
+import com.tea.kotlin.android.lifecycles.ActionLifecycle
 
 class ClickListener<Msg>(
     lifecycle: ActionLifecycle<Msg>,

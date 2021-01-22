@@ -1,6 +1,6 @@
 package com.tea.kotlin.android.actions
 
-import com.tea.kotlin.android.common.ActionLifecycle
+import com.tea.kotlin.android.lifecycles.ActionLifecycle
 
 open class Action<Msg>(
     lifecycle: ActionLifecycle<Msg>,
