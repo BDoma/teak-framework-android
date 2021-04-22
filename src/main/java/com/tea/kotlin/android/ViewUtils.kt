@@ -13,7 +13,7 @@ fun TextView.changeText(newText: String){
     if (text.toString() != newText) text = newText
 }
 
-fun EditText.changeError(msg: String?){
+fun TextView.changeError(msg: String?){
     if (error != msg){
         error = msg
         error?.let { requestFocus() }

@@ -16,13 +16,13 @@ class TeaComponent<Model : Any, Msg>(private val implementation: Impl<Model, Msg
         msgSender.dispatch(message)
     }
 
-    internal fun onCreate() {
+    fun onCreate() {
         updater = implementation.updater()
         initer = implementation.initializer()
         runtime = Runtime(::init, view = ::view, ::update)
     }
 
-    internal fun onDestroy() {
+    fun onDestroy() {
         runtime.stop()
     }
 

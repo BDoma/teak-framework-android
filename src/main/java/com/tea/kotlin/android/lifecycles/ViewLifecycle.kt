@@ -5,12 +5,17 @@ class ViewLifecycle {
     private var isViewCreated = false
 
     internal fun onViewCreated() {
-        viewRelatedFunctions.forEach { it() }
         isViewCreated = true
+        viewRelatedFunctions.forEach { it() }
+        viewRelatedFunctions.clear()
     }
 
     fun runWhenViewCreated(function: () -> Unit) {
         if (isViewCreated) function()
         else viewRelatedFunctions.add(function)
+    }
+
+    fun destroy() {
+        isViewCreated = false
     }
 }

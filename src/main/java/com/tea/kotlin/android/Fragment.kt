@@ -11,11 +11,6 @@ abstract class Fragment<Model : Any, Msg> : Fragment(), TeaComponent.Impl<Model,
     protected val teaComponent = TeaComponent(this)
     protected val viewLifecycle = ViewLifecycle()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        teaComponent.onCreate()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,12 +22,15 @@ abstract class Fragment<Model : Any, Msg> : Fragment(), TeaComponent.Impl<Model,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycle.onViewCreated()
+        teaComponent.onCreate()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewLifecycle.destroy()
         teaComponent.onDestroy()
     }
+
 
     abstract fun getLayout(): Int
 }
