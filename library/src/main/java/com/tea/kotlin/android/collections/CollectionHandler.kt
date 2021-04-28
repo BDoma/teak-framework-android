@@ -1,23 +1,21 @@
-package com.tea.kotlin.android
+package com.tea.kotlin.android.collections
 
-abstract class CollectionHandler<T> {
+abstract class CollectionHandler<T>(private val comparator: Comparator<T>) {
     private var items = ArrayList<T>()
 
-    protected abstract fun itemsAreSame(first: T, second: T): Boolean
-    protected abstract fun contentIsSame(first: T, second: T): Boolean
     protected abstract fun insert(item: T)
     protected abstract fun remove(item: T)
     protected abstract fun update(item: T)
 
     fun handle(newItems: Collection<T>) {
         for (item in items) {
-            if (newItems.none { itemsAreSame(item, it) }) remove(item)
+            if (newItems.none { comparator.itemsAreSame(item, it) }) remove(item)
         }
 
         for (newItem in newItems) {
-            val oldItem = items.find { itemsAreSame(newItem, it) }
+            val oldItem = items.find { comparator.itemsAreSame(newItem, it) }
             if (oldItem == null) insert(newItem)
-            else if (!contentIsSame(oldItem, newItem)) {
+            else if (!comparator.contentIsSame(oldItem, newItem)) {
                 update(newItem)
             }
         }
