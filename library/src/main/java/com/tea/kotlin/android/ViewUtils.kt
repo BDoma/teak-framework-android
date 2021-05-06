@@ -20,7 +20,6 @@ fun TextView.changeError(msg: String?){
     }
 }
 
-
 fun MenuItem.changeVisibility(visible: Boolean){
     if (isVisible != visible){
         isVisible = visible
