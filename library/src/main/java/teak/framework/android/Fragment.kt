@@ -1,4 +1,4 @@
-package com.tea.kotlin.android
+package teak.framework.android
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.tea.kotlin.android'
+group = 'teak.framework.android'
 version = '0.1'
 
 repositories {
@@ -54,8 +54,8 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.tea.kotlin.android'
-                artifactId = 'android-teak-extension'
+                groupId = 'teak.framework.android'
+                artifactId = 'teak-android-extension'
                 version = '0.1'
             }
         }

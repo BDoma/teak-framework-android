@@ -1,4 +1,4 @@
-package com.tea.kotlin.android.lifecycles
+package teak.framework.android.lifecycles
 
 class ViewLifecycle {
     private val viewRelatedFunctions = arrayListOf<() -> Unit>()

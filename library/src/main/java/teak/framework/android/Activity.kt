@@ -1,8 +1,8 @@
-package com.tea.kotlin.android
+package teak.framework.android
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.tea.kotlin.android.lifecycles.ViewLifecycle
+import teak.framework.android.lifecycles.ViewLifecycle
 import teak.framework.core.TeakComponent
 import teak.framework.core.TeakComponentContract
 

@@ -1,4 +1,4 @@
-package com.tea.kotlin.android.collections
+package teak.framework.android.collections
 
 abstract class CollectionHandler<T>(private val comparator: Comparator<T>) {
     private var items = ArrayList<T>()

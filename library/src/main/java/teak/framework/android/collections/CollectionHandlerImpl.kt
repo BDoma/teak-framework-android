@@ -1,4 +1,4 @@
-package com.tea.kotlin.android.collections
+package teak.framework.android.collections
 
 class CollectionHandlerImpl<T>(
     comparator: Comparator<T>,

@@ -1,8 +1,7 @@
-package com.tea.kotlin.android
+package teak.framework.android
 
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
 
 fun View.changeVisibility(newVisibility : Int){
