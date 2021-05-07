@@ -9,8 +9,13 @@ import teak.framework.core.TeakComponent
 import teak.framework.core.TeakComponentContract
 
 
-abstract class Fragment<Model : Any, Msg : Any>(componentImpl: TeakComponentContract.Impl<Model, Msg>) : Fragment() {
-    protected val teaComponent = TeakComponent(componentImpl)
+abstract class Fragment<Model : Any, Msg : Any> : Fragment(), TeakComponentContract.Impl<Model, Msg> {
+    protected lateinit var teaComponent: TeakComponent<Model, Msg>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        teaComponent = TeakComponent(this)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,

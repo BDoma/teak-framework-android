@@ -6,12 +6,13 @@ import teak.framework.core.TeakComponent
 import teak.framework.core.TeakComponentContract
 
 
-abstract class Activity<Model : Any, Msg : Any>(componentImpl: TeakComponentContract.Impl<Model, Msg>) : AppCompatActivity() {
-    protected val teaComponent = TeakComponent(componentImpl)
+abstract class Activity<Model : Any, Msg : Any> : AppCompatActivity(), TeakComponentContract.Impl<Model, Msg> {
+    protected lateinit var teaComponent: TeakComponent<Model, Msg>
     protected val viewLifecycle = ViewLifecycle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        teaComponent = TeakComponent(this)
         teaComponent.onCreate()
         setContentView(getLayout())
         viewLifecycle.onViewCreated()
