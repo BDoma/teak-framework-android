@@ -5,8 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class RecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(
     private val comparator: Comparator<T>,
     protected val items: ArrayList<T> = arrayListOf()) : RecyclerView.Adapter<VH>() {
-
-    private val handler = CollectionHandlerImpl(comparator, ::insert, ::remove, ::update)
+    private val handler = CollectionHandler(comparator, ::insert, ::remove, ::update)
 
     fun changeItems(newItems: Collection<T>) {
         handler.handle(newItems)
