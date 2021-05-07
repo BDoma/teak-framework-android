@@ -1,4 +1,4 @@
-package teak.framework.android.dummy
+package teak.framework.android.dummy.models
 
 data class DummyItem(val id: Int, val content: String){
     class Comparator : teak.framework.android.collections.Comparator<DummyItem> {

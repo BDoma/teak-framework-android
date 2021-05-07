@@ -3,7 +3,7 @@ package teak.framework.android
 import org.junit.Test
 import org.mockito.Mockito
 import teak.framework.android.dummy.DummyCollectionHandler
-import teak.framework.android.dummy.DummyItem
+import teak.framework.android.dummy.models.DummyItem
 
 class CollectionControllerTest {
     @Test

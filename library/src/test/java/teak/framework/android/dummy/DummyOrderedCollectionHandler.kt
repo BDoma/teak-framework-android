@@ -1,10 +1,10 @@
 package teak.framework.android.dummy
 
-import teak.framework.android.collections.CollectionHandler
+import teak.framework.android.collections.OrderedCollectionHandler
 import teak.framework.android.dummy.models.DummyItem
 
-class DummyCollectionHandler(private val notifier: Notifier) {
-    private val handler = CollectionHandler(DummyItem.Comparator(), ::insert, ::remove, ::update)
+class DummyOrderedCollectionHandler(private val notifier: Notifier) {
+    private val handler = OrderedCollectionHandler(DummyItem.Comparator(), ::insert, ::remove, ::update, ::swap)
 
     fun applyChanges(newItems: Collection<DummyItem>) {
         handler.handle(newItems)
@@ -22,9 +22,14 @@ class DummyCollectionHandler(private val notifier: Notifier) {
         notifier.update(item)
     }
 
+    private fun swap(pos1: Int, pos2: Int) {
+        notifier.swap(pos1, pos2)
+    }
+
     interface Notifier {
         fun insert(item: DummyItem)
         fun remove(item: DummyItem)
         fun update(item: DummyItem)
+        fun swap(pos1: Int, pos2: Int)
     }
 }
