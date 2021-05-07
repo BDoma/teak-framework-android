@@ -5,7 +5,7 @@ import teak.framework.android.collections.models.Comparator
 
 abstract class RecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(
     private val comparator: Comparator<T>,
-    private val items: ArrayList<T> = arrayListOf(),
+    protected val items: ArrayList<T> = arrayListOf(),
     orderIsImportant: Boolean = true
 ) : RecyclerView.Adapter<VH>() {
 
