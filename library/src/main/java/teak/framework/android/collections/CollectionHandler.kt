@@ -1,5 +1,7 @@
 package teak.framework.android.collections
 
+import teak.framework.android.collections.models.Comparator
+
 open class CollectionHandler<T>(
     private val comparator: Comparator<T>,
     private val insertCallback: (T) -> Unit,

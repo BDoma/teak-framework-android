@@ -1,6 +1,7 @@
 package teak.framework.android.collections
 
 import androidx.recyclerview.widget.RecyclerView
+import teak.framework.android.collections.models.Comparator
 
 abstract class RecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(
     private val comparator: Comparator<T>,

@@ -1,5 +1,7 @@
 package teak.framework.android.collections
 
+import teak.framework.android.collections.models.Comparator
+
 class OrderedCollectionHandler<T>(
     private val comparator: Comparator<T>,
     insertCallback: (T) -> Unit,
