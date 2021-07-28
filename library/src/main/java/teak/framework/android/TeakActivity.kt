@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import teak.framework.core.TeakComponent
 import teak.framework.core.TeakComponentContract
+import android.view.View
 
 
 abstract class TeakActivity<Model : Any, Msg : Any> : AppCompatActivity(), TeakComponentContract.Impl<Model, Msg> {
@@ -14,7 +15,7 @@ abstract class TeakActivity<Model : Any, Msg : Any> : AppCompatActivity(), TeakC
         super.onCreate(savedInstanceState)
         teaComponent = TeakComponent(this)
         teaComponent.onCreate()
-        setContentView(getLayout())
+        setContentView(getContentView())
         viewLifecycle.onViewCreated()
     }
 
@@ -24,7 +25,7 @@ abstract class TeakActivity<Model : Any, Msg : Any> : AppCompatActivity(), TeakC
         teaComponent.onDestroy()
     }
 
-    abstract fun getLayout(): Int
+    abstract fun getContentView(): View
 
     inner class ViewLifecycle {
         private val viewRelatedFunctions = arrayListOf<() -> Unit>()

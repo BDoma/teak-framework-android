@@ -1,9 +1,7 @@
 package teak.framework.android
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import teak.framework.core.TeakComponent
 import teak.framework.core.TeakComponentContract
@@ -17,14 +15,6 @@ abstract class TeakFragment<Model : Any, Msg : Any> : Fragment(), TeakComponentC
         teaComponent = TeakComponent(this)
     }
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(getLayout(), container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         teaComponent.onCreate()
@@ -34,6 +24,4 @@ abstract class TeakFragment<Model : Any, Msg : Any> : Fragment(), TeakComponentC
         super.onDestroyView()
         teaComponent.onDestroy()
     }
-
-    abstract fun getLayout(): Int
 }
