@@ -20,9 +20,9 @@ abstract class TeakActivity<Model : Any, Msg : Any> : AppCompatActivity(), TeakC
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         viewLifecycle.destroy()
         teaComponent.onDestroy()
+        super.onDestroy()
     }
 
     abstract fun getContentView(): View

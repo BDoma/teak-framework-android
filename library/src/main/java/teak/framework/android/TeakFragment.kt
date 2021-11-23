@@ -21,7 +21,7 @@ abstract class TeakFragment<Model : Any, Msg : Any> : Fragment(), TeakComponentC
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         teaComponent.onDestroy()
+        super.onDestroyView()
     }
 }
