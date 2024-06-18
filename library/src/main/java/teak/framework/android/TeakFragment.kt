@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import teak.framework.core.TeakComponent
 import teak.framework.core.TeakComponentContract
 
-
+@Deprecated("Deprecated since 05.0 - Use TeakViewModel Instead")
 abstract class TeakFragment<Model : Any, Msg : Any> : Fragment(), TeakComponentContract.Impl<Model, Msg> {
     protected lateinit var teaComponent: TeakComponent<Model, Msg>
 

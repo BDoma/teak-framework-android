@@ -6,7 +6,7 @@ import teak.framework.core.TeakComponent
 import teak.framework.core.TeakComponentContract
 import android.view.View
 
-
+@Deprecated("Deprecated since 05.0 - Use TeakViewModel Instead")
 abstract class TeakActivity<Model : Any, Msg : Any> : AppCompatActivity(), TeakComponentContract.Impl<Model, Msg> {
     protected lateinit var teaComponent: TeakComponent<Model, Msg>
     protected val viewLifecycle = ViewLifecycle()
