@@ -2,6 +2,7 @@ package teak.framework.android
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +22,7 @@ class TeakViewModel<Model : Any, Msg>(
             update = update,
             view = { model, function ->
                 _model.update { Pair(model, function) }
-            })
+            }, scope = viewModelScope)
     }
 
     companion object{
