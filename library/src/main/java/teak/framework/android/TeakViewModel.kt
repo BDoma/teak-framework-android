@@ -1,5 +1,6 @@
 package teak.framework.android
 
+import android.view.Display.Mode
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -16,13 +17,16 @@ class TeakViewModel<Model : Any, Msg>(
 ) : ViewModel() {
     private val _model: MutableStateFlow<Pair<Model?, (Msg) -> Unit>> = MutableStateFlow(null to {})
     val state = _model.asStateFlow()
-
-    init {
+    private val runtime: TeakRuntime<Model, Msg> =
         TeakRuntime(init = init,
             update = update,
             view = { model, function ->
                 _model.update { Pair(model, function) }
             }, scope = viewModelScope)
+
+    override fun onCleared() {
+        super.onCleared()
+        runtime.stop()
     }
 
     companion object{
